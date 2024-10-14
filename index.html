@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christmas Letter Generator</title>
+    <title>Write to Santa - Christmas Wish</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
         body {
             font-family: 'Mountains of Christmas', cursive;
             background-color: #f0f8ff;
-            background-image: url('https://i.imgur.com/DaJNbxY.png');
+            background-image: url('https://cdn.pixabay.com/photo/2016/11/29/05/38/santa-claus-1862897_1280.jpg');
             background-size: cover;
+            background-position: center;
             margin: 0;
             padding: 20px;
             color: #333;
@@ -35,7 +36,7 @@
         }
 
         .santa-icon {
-            width: 80px;
+            width: 100px;
             animation: santaWave 1.5s infinite;
         }
 
@@ -134,22 +135,23 @@
 <body>
 
     <div class="container">
-        <img src="https://i.imgur.com/JbiCRQl.png" alt="Santa" class="santa-icon">
-        <h1>🎄 Christmas Letter Generator 🎅</h1>
+        <img src="https://cdn.pixabay.com/photo/2018/12/04/11/48/santa-claus-3852874_960_720.png" alt="Santa Waving"
+            class="santa-icon">
+        <h1>🎄 Write to Santa 🎅</h1>
 
-        <label for="childName">Child's Name:</label>
-        <input type="text" id="childName" placeholder="What's your child's name?" onfocus="playJingle()">
-        <p class="helper-message">🎁 Santa wants to know their name!</p>
+        <label for="yourName">Your Name:</label>
+        <input type="text" id="yourName" placeholder="What's your name?" onfocus="playJingle()">
+        <p class="helper-message">🎅 Tell Santa your name.</p>
 
-        <label for="gift">Gift They Want:</label>
-        <input type="text" id="gift" placeholder="What's the top gift?" onfocus="playJingle()">
-        <p class="helper-message">🎁 What gift is on their wish list?</p>
+        <label for="wishList">Your Wish List:</label>
+        <input type="text" id="wishList" placeholder="What do you wish for this Christmas?" onfocus="playJingle()">
+        <p class="helper-message">🎁 What gifts are on your wish list?</p>
 
-        <label for="customMessage">Message from Santa:</label>
-        <textarea id="customMessage" placeholder="Write a magical message" onfocus="playJingle()"></textarea>
-        <p class="helper-message">🎄 Add a special message from Santa.</p>
+        <label for="messageToSanta">Message for Santa:</label>
+        <textarea id="messageToSanta" placeholder="Why have you been good this year?" onfocus="playJingle()"></textarea>
+        <p class="helper-message">📝 Tell Santa why you’ve been good this year.</p>
 
-        <button onclick="generateLetter()">✨ Generate Letter ✨</button>
+        <button onclick="generateLetter()">📜 Write Your Letter 📜</button>
 
         <div id="output"></div>
 
@@ -171,25 +173,23 @@
         }
 
         function generateLetter() {
-            const childName = document.getElementById('childName').value;
-            const gift = document.getElementById('gift').value;
-            const customMessage = document.getElementById('customMessage').value;
+            const yourName = document.getElementById('yourName').value;
+            const wishList = document.getElementById('wishList').value;
+            const messageToSanta = document.getElementById('messageToSanta').value;
 
-            if (!childName || !gift || !customMessage) {
-                alert("🎅 Please fill out all fields before generating the letter!");
+            if (!yourName || !wishList || !messageToSanta) {
+                alert("🎅 Please fill out all fields before writing the letter!");
                 return;
             }
 
             const letter = `
             <div class="christmas-letter">
-                <p>Dear ${childName},</p>
-                <p>Ho Ho Ho! Christmas is coming soon, and all the elves and I are preparing the North Pole for the big day!</p>
-                <p>Your parents have told me how wonderfully good you’ve been this year, and I’m so proud of you!</p>
-                <p>I heard you'd like a ${gift} for Christmas. I’ll make sure my elves put in extra work to make that happen for you.</p>
-                <p>${customMessage}</p>
-                <p>Stay good and spread the Christmas spirit, and I’ll see you soon!</p>
-                <p>Merry Christmas!</p>
-                <p>🎅 With love, Santa Claus</p>
+                <p>Dear Santa,</p>
+                <p>My name is ${yourName} and I have been good this year!</p>
+                <p>For Christmas, I would love to receive: ${wishList}.</p>
+                <p>${messageToSanta}</p>
+                <p>I hope you have a safe trip delivering presents to everyone!</p>
+                <p>Thank you, Santa! 🎅</p>
             </div>`;
 
             const output = document.getElementById('output');
