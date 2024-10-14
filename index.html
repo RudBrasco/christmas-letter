@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Letter Generator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+        body {
+            font-family: 'Mountains of Christmas', cursive;
+            background-color: #f0f8ff;
+            background-image: url('https://i.imgur.com/DaJNbxY.png');
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff4444;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .santa-icon {
+            width: 80px;
+            animation: santaWave 1.5s infinite;
+        }
+
+        @keyframes santaWave {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(10deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            75% {
+                transform: rotate(-10deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            font-size: 1.2em;
+            color: #003366;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 2px solid #ff4444;
+            border-radius: 10px;
+            font-size: 1em;
+            background-color: #fff8e7;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        input:hover,
+        textarea:hover {
+            box-shadow: 0 0 10px rgba(255, 136, 0, 0.8);
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        button {
+            background-color: #ff4444;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #cc3737;
+        }
+
+        #output {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #ff8888;
+            background-color: #fdfdfd;
+            border-radius: 15px;
+            text-align: left;
+            display: none;
+        }
+
+        .christmas-letter {
+            font-family: 'Cursive', 'Georgia', serif;
+            color: #3b3b3b;
+            font-size: 1.1em;
+        }
+
+        .helper-message {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="https://i.imgur.com/JbiCRQl.png" alt="Santa" class="santa-icon">
+        <h1>🎄 Christmas Letter Generator 🎅</h1>
+
+        <label for="childName">Child's Name:</label>
+        <input type="text" id="childName" placeholder="What's your child's name?" onfocus="playJingle()">
+        <p class="helper-message">🎁 Santa wants to know their name!</p>
+
+        <label for="gift">Gift They Want:</label>
+        <input type="text" id="gift" placeholder="What's the top gift?" onfocus="playJingle()">
+        <p class="helper-message">🎁 What gift is on their wish list?</p>
+
+        <label for="customMessage">Message from Santa:</label>
+        <textarea id="customMessage" placeholder="Write a magical message" onfocus="playJingle()"></textarea>
+        <p class="helper-message">🎄 Add a special message from Santa.</p>
+
+        <button onclick="generateLetter()">✨ Generate Letter ✨</button>
+
+        <div id="output"></div>
+
+        <!-- AdSense Placement (Sample Placeholder) -->
+        <div style="margin-top: 20px; text-align:center;">
+            <!-- Add your Google AdSense code here -->
+            <p>Ad will appear here</p>
+        </div>
+    </div>
+
+    <audio id="jingleSound">
+        <source src="https://www.myinstants.com/media/sounds/sleigh-bells-sound-effect.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function playJingle() {
+            const jingle = document.getElementById("jingleSound");
+            jingle.play();
+        }
+
+        function generateLetter() {
+            const childName = document.getElementById('childName').value;
+            const gift = document.getElementById('gift').value;
+            const customMessage = document.getElementById('customMessage').value;
+
+            if (!childName || !gift || !customMessage) {
+                alert("🎅 Please fill out all fields before generating the letter!");
+                return;
+            }
+
+            const letter = `
+            <div class="christmas-letter">
+                <p>Dear ${childName},</p>
+                <p>Ho Ho Ho! Christmas is coming soon, and all the elves and I are preparing the North Pole for the big day!</p>
+                <p>Your parents have told me how wonderfully good you’ve been this year, and I’m so proud of you!</p>
+                <p>I heard you'd like a ${gift} for Christmas. I’ll make sure my elves put in extra work to make that happen for you.</p>
+                <p>${customMessage}</p>
+                <p>Stay good and spread the Christmas spirit, and I’ll see you soon!</p>
+                <p>Merry Christmas!</p>
+                <p>🎅 With love, Santa Claus</p>
+            </div>`;
+
+            const output = document.getElementById('output');
+            output.innerHTML = letter;
+            output.style.display = 'block';
+        }
+    </script>
+
+</body>
+
+</html>
